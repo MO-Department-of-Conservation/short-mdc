@@ -1,0 +1,35 @@
+--- shurly.old.module	2010-08-30 14:12:12.000000000 +0100
++++ shurly.module	2010-12-03 16:14:34.000000000 +0000
+@@ -438,8 +438,13 @@ function shurly_shorten($long_url, $cust
+   if (!$rate_limit['allowed']) {
+     $error = t('Rate limit exceeded. You are limited to @rate requests per @time minute period.', array('@rate' => $rate_limit['rate'], '@time' => $rate_limit['time']));
+   }
+-  elseif (!shurly_validate_long($long_url)) {
+-    $error = t('Invalid long URL.');
++  elseif ($errors = module_invoke_all('shurly_validate', $long_url)) { 
++    // Creates hook_shurly_validate($long_url).
++    // Implementations of this hook should return error strings through t().
++    // See, for example, shurly_shurly_validate($long_url) below.
++    if (count($errors)) {
++      $error = implode(' ', $errors);
++    }
+   }
+   elseif (is_null($custom)) {
+     $latest = shurly_get_latest_short($long_url, $account->uid);
+@@ -604,6 +609,16 @@ function shurly_validate_custom($custom)
+   return preg_match('/[\/#%&\@\*\{\}\\:\;<>\?\+ \.\,\'\"\$\|`^\[\]]/u', $custom) ? FALSE : TRUE;
+ }
+ 
++/**
++ * Implementation of hook_shurly_validate().
++ */
++function shurly_shurly_validate($long_url) {
++  if (!shurly_validate_long(&$long_url)) {
++    return t('Invalid long URL.');
++  }
++  return;
++}
++
+ 
+ function shurly_validate_long(&$long_url) {
+   $return = TRUE;
