@@ -87,7 +87,7 @@ function shurly_views_default_views() {
       'label' => 'Long URL',
       'alter' => array(
         'alter_text' => 1,
-        'text' => '<a href="[destination]" title="[destination]">[destination_1]</a>',
+        'text' => '<a href="[destination]" target="_blank" title="[destination]">[destination_1]</a>',
         'make_link' => 0,
         'path' => '',
         'link_class' => '',
@@ -282,6 +282,36 @@ function shurly_views_default_views() {
       'field' => 'last_used',
       'relationship' => 'none',
     ),
+    'link_edit' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => '',
+      'exclude' => 0,
+      'id' => 'link_edit',
+      'table' => 'shurly',
+      'field' => 'link_edit',
+      'relationship' => 'none',
+    ),
     'link_delete' => array(
       'label' => '',
       'alter' => array(
@@ -417,6 +447,7 @@ function shurly_views_default_views() {
       'created' => 'created',
       'created_1' => 'created_1',
       'last_used' => 'last_used',
+      'link_edit' => 'link_edit',
       'link_delete' => 'link_delete',
     ),
     'info' => array(
@@ -450,6 +481,9 @@ function shurly_views_default_views() {
       ),
       'last_used' => array(
         'sortable' => 1,
+        'separator' => '',
+      ),
+      'link_edit' => array(
         'separator' => '',
       ),
       'link_delete' => array(
@@ -716,6 +750,36 @@ function shurly_views_default_views() {
         'button' => 'Override',
       ),
     ),
+    'link_edit' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => '',
+      'exclude' => 0,
+      'id' => 'link_edit',
+      'table' => 'shurly',
+      'field' => 'link_edit',
+      'relationship' => 'none',
+    ),
     'link_delete' => array(
       'label' => '',
       'alter' => array(
@@ -817,6 +881,7 @@ function shurly_views_default_views() {
       'nothing' => 'nothing',
       'created' => 'created',
       'last_used' => 'last_used',
+      'link_edit' => 'link_edit',
       'link_delete' => 'link_delete',
     ),
     'info' => array(
@@ -845,6 +910,9 @@ function shurly_views_default_views() {
       ),
       'last_used' => array(
         'sortable' => 1,
+        'separator' => '',
+      ),
+      'link_edit' => array(
         'separator' => '',
       ),
       'link_delete' => array(

@@ -19,6 +19,8 @@ function shurly_views_data() {
     'weight' => 10,
   );
 
+  $data['shurly']['table']['entity type'] = 'shurly_item';
+
   //$data['shurly']['table']['join'] = array(
   //  'users' => array(
   //    'left_field' => 'uid',
@@ -222,6 +224,15 @@ function shurly_views_data() {
     ),
   );
 
+  $data['shurly']['link_edit'] = array(
+    'field' => array(
+      'title' => t('Edit URL'),
+      'help' => t('Link to edit the URL'),
+      'handler' => 'shurly_handler_field_shurly_link_edit',
+      'parent' => 'views_handler_field',
+    ),
+  );
+
   $data['shurly']['link_delete'] = array(
     'field' => array(
       'title' => t('Delete URL'),
@@ -233,4 +244,3 @@ function shurly_views_data() {
 
   return $data;
 }
-

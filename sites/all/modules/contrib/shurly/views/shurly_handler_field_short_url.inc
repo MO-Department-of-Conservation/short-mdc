@@ -54,12 +54,8 @@ class shurly_handler_field_short_url extends views_handler_field {
     );
   }
 
-  function query() {
-    $this->ensure_my_table();
-    $this->add_additional_fields();
-  }
-
   function render($values) {
+    global $base_url;
     // rawurldecode() allows URLs to be shown with UTF8 characters
     // however, this could cause other problems...
     if (!empty($this->options['text'])) {
@@ -70,12 +66,12 @@ class shurly_handler_field_short_url extends views_handler_field {
         $text = $values->{$this->aliases['source']};
       }
       else {
-        $text = rawurldecode(_surl($values->{$this->aliases['source']}, array('absolute' => TRUE)));
+        $text = rawurldecode(_surl($values->{$this->aliases['source']}, array('absolute' => TRUE, 'base_url' => variable_get('shurly_base', $base_url))));
       }
     }
 
     if ($this->options['link']) {
-      $text = '<a href="' . _surl($values->{$this->aliases['source']}, array('absolute' => TRUE)) . '">' . $text . '</a>';
+      $text = '<a href="' . _surl($values->{$this->aliases['source']}, array('absolute' => TRUE, 'base_url' => variable_get('shurly_base', $base_url))) . '">' . $text . '</a>';
     }
 
     return $text;

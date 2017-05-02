@@ -32,21 +32,29 @@ function shurly_service_permission() {
 function shurly_service_menu() {
   $items = array();
   $items['shurly/api/shorten'] = array(
-    'file'             => 'shurly_service.inc',
-    'page callback'    => 'shurly_service_shorten',
-    'access callback' => TRUE,
-    'type'             => MENU_CALLBACK,
+    'file' => 'shurly_service.inc',
+    'page callback' => 'shurly_service_shorten',
+    'access callback' => 'shurly_service_access_api_key',
+    'type' => MENU_CALLBACK,
   );
   $items['shurly/api/expand'] = array(
-    'file'             => 'shurly_service.inc',
-    'page callback'    => 'shurly_service_expand',
+    'file' => 'shurly_service.inc',
+    'page callback' => 'shurly_service_expand',
     'access callback' => TRUE,
-    'type'             => MENU_CALLBACK,
+    'type' => MENU_CALLBACK,
   );
 
   return $items;
 }
 
+function shurly_service_access_api_key() {
+  if ($_REQUEST['apiKey']) {
+    module_load_include('inc', 'shurly_service', 'shurly_api_keys');
+    $api_validation = (is_numeric(shurly_get_uid($_REQUEST['apiKey']))) ? TRUE : FALSE;
+  }
+    
+  return user_access('Create short URLs') && $api_validation;
+}
 
 /**
  * Implements hook_block_info().
