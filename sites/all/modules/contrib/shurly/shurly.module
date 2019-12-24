@@ -416,7 +416,7 @@ function shurly_create_form($form, &$form_state) {
     '#title' => t('Enter a long URL to make short'),
     '#type' => 'textfield',
     '#maxlength' => 2048,
-    '#default_value' => isset($form_state['storage']['shurly']['long_url']) ? $form_state['storage']['shurly']['long_url'] : ( isset($_GET['url']) ? $_GET['url'] : 'http://'),
+    '#default_value' => isset($form_state['storage']['shurly']['long_url']) ? $form_state['storage']['shurly']['long_url'] : ( isset($_GET['url']) ? $_GET['url'] : 'https://'),
     '#attributes' => array('tabindex' => 1),
   );
 
@@ -441,7 +441,7 @@ function shurly_create_form($form, &$form_state) {
       '#suffix' => '</div>',
       '#field_prefix' => t('Your short URL:'),
       '#field_suffix' => ' <div id="shurly-copy-container" style="position:relative;"><div id="shurly-copy">' . t('copy') . '</div></div>
-      <div class="social"><a href="http://twitter.com?status=' . urlencode($form_state['storage']['shurly']['final_url']) . '">' . t('Create a Twitter message with this URL') . '</a></div>',
+      <div class="social"><a href="https://twitter.com?status=' . urlencode($form_state['storage']['shurly']['final_url']) . '">' . t('Create a Twitter message with this URL') . '</a></div>',
     );
   }
 
@@ -828,7 +828,7 @@ function shurly_validate_custom($custom) {
 
 /**
  * Validate a long URL
- * 
+ *
  * Checks for:
  * - a valid URL
  * - it's not a link to an existing short URL
