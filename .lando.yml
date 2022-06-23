@@ -1,0 +1,5 @@
+name: short-mdc
+recipe: drupal7
+config:
+  webroot: .
+  php: "7.4"
