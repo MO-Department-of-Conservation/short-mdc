@@ -1,3 +1,6 @@
+# Block short-term bad actor
+Deny from 128.199.245.103
+#
 #
 # Apache/PHP/Drupal settings:
 #
@@ -151,5 +154,6 @@ DirectoryIndex index.php index.html index.htm
 <IfModule mod_headers.c>
   # Disable content sniffing, since it's an attack vector.
   Header always set X-Content-Type-Options nosniff
+  # Disable Proxy header, since it's an attack vector.
+  RequestHeader unset Proxy
 </IfModule>
-
